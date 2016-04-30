@@ -155,8 +155,40 @@ public class DrugController implements ICalculateDrugs {
     
     }
     
-    // Old Memory
+ // Old Memory
     public void oldMemory(){
         
+        boolean upDown;
+        boolean upDown2;
+        
+        
+        
+        
+        
+        switch(counter){
+            
+        case 0:
+           price2 = 1000;
+           availability = 100;
+           break;
+        case 1:
+            upDown = randomizer.nextBoolean();
+            int priceModifier = randomizer.nextInt(66-10)+1;
+            int modifiedPrice = price2 * priceModifier;
+            int newPrice = (upDown ? (price2 = price2 + modifiedPrice) : (price2 = price2 - modifiedPrice));
+            price2 = newPrice + 75;
+            availability += 7;
+            break;
+        default:
+            upDown2 = randomizer.nextBoolean();
+            int priceModifier2 = randomizer.nextInt(36-10)+1;
+            int modifiedPrice2 = price2 * priceModifier2;
+            int newPrice2 = (upDown2 ? (price2 = price2 + modifiedPrice2) : (price2 = price2 - modifiedPrice2));
+            price2 = newPrice2 + 75;
+            availability += 13;
+            break;
+            
+            
+        }
+        counter++;
     }
-}
