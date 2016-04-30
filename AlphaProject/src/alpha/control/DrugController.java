@@ -155,15 +155,11 @@ public class DrugController implements ICalculateDrugs {
     
     }
     
- // Old Memory
+   // Old Memory
     public void oldMemory(){
         
         boolean upDown;
         boolean upDown2;
-        
-        
-        
-        
         
         switch(counter){
             
@@ -192,3 +188,4 @@ public class DrugController implements ICalculateDrugs {
         }
         counter++;
     }
+}
