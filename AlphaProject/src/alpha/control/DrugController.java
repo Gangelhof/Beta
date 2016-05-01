@@ -22,6 +22,8 @@ public class DrugController implements ICalculateDrugs {
     Country country = new Country();
     private String name; // Få navnet på det drug der er valgt??
     private double price;
+    private int price2;
+    private int counter;
     private int availability;
     private int priceStrategy;
     Drug drug = new Drug(name, price, availability, priceStrategy);
