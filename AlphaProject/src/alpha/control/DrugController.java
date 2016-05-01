@@ -164,6 +164,7 @@ public class DrugController implements ICalculateDrugs
     
     }
     
+
     // Old Memory
     public void oldMemory()
     {
@@ -192,6 +193,7 @@ public class DrugController implements ICalculateDrugs
             price2 = newPrice2 + 75;
             availability += 13;
             break;
+
         }
         counter++;
     }
