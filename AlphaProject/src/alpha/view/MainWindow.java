@@ -5,17 +5,45 @@
  */
 package alpha.view;
 
+import alpha.control.DrugController;
+import javax.swing.JComboBox;
+
 /**
  *
  * @author RunEvil
  */
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame 
+{
+    DrugController drugControl;
 
     /**
      * Creates new form MainWindow
      */
-    public MainWindow() {
+    public MainWindow() 
+    {
         initComponents();
+        drugControl = new DrugController();
+        setVisible(true);
+        setLocationRelativeTo(null);
+        
+    }
+    
+    private void showBuySell()
+    {
+        jDialogBuySell.setVisible(true);
+        jDialogBuySell.setLocationRelativeTo(this);
+        fillComboDrugs(jComboBoxSelectDrug);
+        jFormattedTextFieldAmount.setText("");
+    }
+    
+    private void fillComboDrugs(JComboBox combo)
+    {
+        combo.removeAllItems();
+        for (int i = 0; i < gameInit.getDrugs().size(); i++)
+        {
+            String s = gameInit.getDrugs().get(i).getName();
+            combo.addItem(s);
+        }
     }
 
     /**
@@ -49,7 +77,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabelCurrentDay = new javax.swing.JLabel();
         jProgressBarDay = new javax.swing.JProgressBar();
         jComboBoxCountries = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        jButtonTravel = new javax.swing.JButton();
         jButtonBuySell = new javax.swing.JButton();
 
         jComboBoxSelectDrug.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cocaine", "Heroin", "Amphetamine", "Acid", "Angel dust", "Crystal meth", "Hash", "Weed", "Mushrooms", "Valium" }));
@@ -141,7 +169,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabelMoney.setText("Amount of cash $:");
 
-        jLabelMoneyLeft.setText("$5000");
+        jLabelMoneyLeft.setText("5000");
 
         jLabelPerson.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelPerson.setText("Person");
@@ -180,9 +208,19 @@ public class MainWindow extends javax.swing.JFrame {
 
         jComboBoxCountries.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Danmark", "Colombia", "Germany", "USA", "France", "Afghanistan" }));
 
-        jButton1.setText("Travel to selected country");
+        jButtonTravel.setText("Travel to selected country");
+        jButtonTravel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTravelActionPerformed(evt);
+            }
+        });
 
         jButtonBuySell.setText("View Buy/Sell menu");
+        jButtonBuySell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuySellActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -198,18 +236,15 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelCountry)
                             .addComponent(jLabelCountry2)
-                            .addComponent(jLabelAvailableDrugs))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelAvailableDrugs)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelMoney)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabelMoneyLeft))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonTravel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jComboBoxCountries, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelPerson)
                     .addComponent(jLabelPerson2)
@@ -255,12 +290,23 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonBuySell)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonTravel))
                 .addContainerGap(104, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonTravelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTravelActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jButtonTravelActionPerformed
+
+    private void jButtonBuySellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuySellActionPerformed
+        // TODO add your handling code here:
+        showBuySell();
+    }//GEN-LAST:event_jButtonBuySellActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,10 +314,10 @@ public class MainWindow extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuy;
     private javax.swing.JButton jButtonBuySell;
     private javax.swing.JButton jButtonSell;
+    private javax.swing.JButton jButtonTravel;
     private javax.swing.JComboBox<String> jComboBoxCountries;
     private javax.swing.JComboBox<String> jComboBoxSelectDrug;
     private javax.swing.JDialog jDialogBuySell;

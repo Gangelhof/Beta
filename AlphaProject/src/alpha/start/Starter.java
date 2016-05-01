@@ -12,6 +12,7 @@ import alpha.model.Country;
 import alpha.model.Drug;
 import alpha.view.MainWindow;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,6 +27,8 @@ public class Starter {
         GameInitializer init = new GameInitializer();
         ArrayList<Drug> startDrugs = init.initializeDrugs();
         ArrayList<Country> countries = init.initializeCountries(startDrugs);
+        String name = init.getUserName();
+        init.initializeUser(name);
         MainWindow mainWindow = new MainWindow();
     }
 }

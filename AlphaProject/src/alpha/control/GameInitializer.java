@@ -11,6 +11,7 @@ import alpha.model.Drug;
 import alpha.model.Stash;
 import alpha.model.User;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -182,6 +183,16 @@ public class GameInitializer implements IGameInitializer {
         countries.add(afghanistan);
         
         return countries;
+    }
+    
+    public String getUserName(){
+        String name = "";
+        name = JOptionPane.showInputDialog("What is your name?");
+        if (name.isEmpty())
+        {
+            name = "Peter";
+        }
+        return name;
     }
     
     public User initializeUser(String input) {

@@ -11,23 +11,32 @@ import alpha.model.Drug;
 import java.util.Calendar;
 import java.util.Random;
 import java.util.TimeZone;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author RunEvil
  */
-public class DrugController implements ICalculateDrugs {
-
+public class DrugController implements ICalculateDrugs 
+{
     private Random randomizer;
-    Country country = new Country();
+    GameInitializer init;
+    Country country;
     private String name; // Få navnet på det drug der er valgt??
     private double price;
+    private int price2;
+    private int counter;
     private int availability;
     private int priceStrategy;
-    Drug drug = new Drug(name, price, availability, priceStrategy);
+    Drug drug;
 
-    public DrugController() {
+    public DrugController() 
+    {
         this.randomizer = new Random();
+        init = new GameInitializer();
+        country = new Country();
+        drug = new Drug(name, price, availability, priceStrategy);
+        
     }
     
     // 0 = Normal (recalculateDrug), 1 = Old Memory, 2 = CompletelyRandom, 3 = Seconds of the Clock, 4 = simpleTwoChoice
@@ -156,7 +165,34 @@ public class DrugController implements ICalculateDrugs {
     }
     
     // Old Memory
-    public void oldMemory(){
+    public void oldMemory()
+    {
+        boolean upDown;
+        boolean upDown2;
         
+        switch(counter){
+            
+        case 0:
+           price2 = 1000;
+           availability = 100;
+           break;
+        case 1:
+            upDown = randomizer.nextBoolean();
+            int priceModifier = randomizer.nextInt(66-10)+1;
+            int modifiedPrice = price2 * priceModifier;
+            int newPrice = (upDown ? (price2 = price2 + modifiedPrice) : (price2 = price2 - modifiedPrice));
+            price2 = newPrice + 75;
+            availability += 7;
+            break;
+        default:
+            upDown2 = randomizer.nextBoolean();
+            int priceModifier2 = randomizer.nextInt(36-10)+1;
+            int modifiedPrice2 = price2 * priceModifier2;
+            int newPrice2 = (upDown2 ? (price2 = price2 + modifiedPrice2) : (price2 = price2 - modifiedPrice2));
+            price2 = newPrice2 + 75;
+            availability += 13;
+            break;
+        }
+        counter++;
     }
 }
